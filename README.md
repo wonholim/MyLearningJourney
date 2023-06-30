@@ -1,8 +1,12 @@
 # MyLearningJourney
 
+<br>
+
  🤡 나는 뭘 배웠지? 🤡
 
-- 모던자바인액션
+---
+
+- [모던자바인액션](https://product.kyobobook.co.kr/detail/S000001810171)
   - [자바 : 무슨일이 일어나고 있는가?](https://github.com/wonholim/MyLearningJourney/blob/main/ModernJavaInAction/1%EC%9E%A5%20%EC%9E%90%EB%B0%94%20%3A%20%EB%AC%B4%EC%8A%A8%EC%9D%BC%EC%9D%B4%20%EC%9D%BC%EC%96%B4%EB%82%98%EA%B3%A0%20%EC%9E%88%EB%8A%94%EA%B0%80%3F.md)
   - [동작 파라미터화 코드 전달하기](https://github.com/wonholim/MyLearningJourney/blob/main/ModernJavaInAction/2%EC%9E%A5%20%EB%8F%99%EC%9E%91%20%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0%ED%99%94%20%EC%BD%94%EB%93%9C%20%EC%A0%84%EB%8B%AC%ED%95%98%EA%B8%B0.md)
   - [람다 표현식](https://github.com/wonholim/MyLearningJourney/blob/main/ModernJavaInAction/3%EC%9E%A5%20%EB%9E%8C%EB%8B%A4%20%ED%91%9C%ED%98%84%EC%8B%9D.md)
@@ -17,16 +21,18 @@
   - [새로운 날짜와 시간 API](https://github.com/wonholim/MyLearningJourney/blob/main/ModernJavaInAction/12%EC%9E%A5%20%EC%83%88%EB%A1%9C%EC%9A%B4%20%EB%82%A0%EC%A7%9C%EC%99%80%20%EC%8B%9C%EA%B0%84%20API.md)
   - [디폴트 메서드](https://github.com/wonholim/MyLearningJourney/blob/main/ModernJavaInAction/13%EC%9E%A5%20%EB%94%94%ED%8F%B4%ED%8A%B8%20%EB%A9%94%EC%84%9C%EB%93%9C.md)
   - [자바 모듈 시스템](https://github.com/wonholim/MyLearningJourney/blob/main/ModernJavaInAction/14%EC%9E%A5%20%EC%9E%90%EB%B0%94%20%EB%AA%A8%EB%93%88%20%EC%8B%9C%EC%8A%A4%ED%85%9C.md)
- 
 
-- 객체지향의 사실과 오해
+<br><br>
+
+- [객체지향의 사실과 오해](https://product.kyobobook.co.kr/detail/S000001628109)
   - 협력하는 객체들의 공동체
   - 이상한 나라의 객체
   - 타입과 추상화
   - 역할, 책임, 협력
  
+<br><br>
 
-- 이펙티브 자바
+- [이펙티브 자바](https://product.kyobobook.co.kr/detail/S000001033066)
   - 들어가기
   - 객체 생성과 파괴
     - 생성자 대신 정적 팩토리 메서드를 고려하라
