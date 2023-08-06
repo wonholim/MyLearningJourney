@@ -7,7 +7,7 @@
   - [x] 구문 분석 단계
   - [x] 최적화 단계
   - [x] 코드 생성 단계
-  - [ ] 링킹 단계
+  - [x] 링킹 단계
 - [ ] 결론
 
 ---
@@ -205,6 +205,22 @@
 
 </br>
 
+- 링킹 : "목적 코드가 기계어일 경우, 여러 라이브러리 목적 코드를 묶어 하나의 실행 파일을 생성하게 된다. 이 과정은 링커에 의해 수행되며, 어떤 사람들은 링커를 컴파일러의 일부로 간주하지 않기도 한다."
+- 링커 : 컴파일러가 만들어낸 하나 이상의 목적 파일을 가져와 이를 단일 실행 프로그램으로 병합하는 프로그램이다.
+  - 유닉스 계열 운영체제에서는 로더를 링커의 동의어로 사용한다.
+  - 라이브러리 또는 럼타임 라이브러리라고 하는 모음에서 오브젝트들을 취할 수 있다.
+  - 대부분의 링커들은 전체 라이브러리를 출력 파일에 포함시키지 않는다. 그대신 다른 오브젝트 파일 혹은 라이브러리가 참조하는 파일들만을 포함한다.
+  - 프로그램의 주소 공간 안의 오브젝트들을 배열하는 일도 하며, 코드를 재배치한다.
+
+- 정적 링킹과 동적 링킹
+  - 정적 링킹 : 실행 파일을 생성할 때, 라이브러리를 같이 포함시켜서 .exe파일을 생성하는 걸 의미한다.
+    - 정적 라이브러리를 사용하여 컴파일을 하면, 링커가 프로그램이 필요로 하는 부분을 라이브러리에 찾아 실행파일에다가 바로 복사한다.
+    - 실행파일에 다 들어가기 때문에, 라이브러리가 필요없고, 컴파일도 되어있어서 시간도 오래되지 않지만, 실행 파일 내에 라이브러리 코드가 저장도기 때문에 메모리를 많이 사용한다.
+    - 이런 단점을 해결하고자 동적 링킹이 생성되었다.
+  ![image](https://user-images.githubusercontent.com/56383948/258647412-9dc38fbd-dd1b-4fdd-86c6-d9a099e8fa0c.png)
+  - 동적 링킹 : 정적 링킹의 단점인 메모리를 줄이기 위해, 많이 사용하는 라이브러리는 메모리에 1개만을 올리는 것이다.
+    - 동적 링크 라이브러리를 DLL이라 한다.
+    - 메모리의 요구사항이 적어졌지만, 라이브러리가 저장되어있는 주소로 점프를 해야하기 때문에, 오버헤드가 발생한다.
 
 </br>
 
@@ -223,4 +239,4 @@
 
 </br>
 
-[parser](https://wan2.land/posts/2020/02/11/make-parser-1/), [파서에 대한 이해](https://edykim.com/ko/post/the-super-tiny-compiler/), [컴파일러](https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC), [유한 오토마타](https://www.geeksforgeeks.org/practice-problems-finite-automata-set-2/), [DFA,NFA](https://vhxpffltm.tistory.com/48), [컴파일러 최적화](https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C-%EC%8B%A4%ED%96%89%EA%B9%8C%EC%A7%80-1/), [어셈블리 프로그래밍](https://crasy.tistory.com/140)
+[parser](https://wan2.land/posts/2020/02/11/make-parser-1/), [파서에 대한 이해](https://edykim.com/ko/post/the-super-tiny-compiler/), [컴파일러](https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC), [유한 오토마타](https://www.geeksforgeeks.org/practice-problems-finite-automata-set-2/), [DFA,NFA](https://vhxpffltm.tistory.com/48), [컴파일러 최적화](https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C-%EC%8B%A4%ED%96%89%EA%B9%8C%EC%A7%80-1/), [어셈블리 프로그래밍](https://crasy.tistory.com/140), [최고](https://jhnyang.tistory.com/42)
