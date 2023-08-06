@@ -5,7 +5,7 @@
 - [x] 컴파일러의 정의
 - [ ] 컴파일 과정
   - [x] 구문 분석 단계
-  - [ ] 최적화 단계
+  - [x] 최적화 단계
   - [ ] 코드 생성 단계
   - [ ] 링킹 단계
 - [ ] 결론
@@ -153,6 +153,21 @@
 
 </br>
 
+- 추상 구문 트리의 입력을 받아 의미 검사를 행한다. 컴파일러에 따라 독립된 의미 분석 단계를 가지며, 형검사, 변수의 선언 및 정의 확인 등을 진행한다. 
+- 묵시적 타입에서 명시적 타입으로 변화한다.
+- 이후 생성된 중간 코드를 분석해, 효율을 높이는 변환(최적화)을 수행한다. 
+  - 핍홀 최적화 : 코드의 작은 부분을 대상으로 불필요한 명령어를 제거하거나, 더 효율적인 명령어로 바꾸는 최적화다. 연속된 산술 연산을 단일 연산으로 병합하거나 불필요한 레지스터 이동을 제거한다.
+    - 중복 명령어 제거
+    - 제어 흐름 최적화
+    - 도달 불가능한 코드 제거
+    - 비용 낮은 연산자로 변환
+  - 지역 최적화 : 함수나 블록 내 코드를 대상으로 수행되는 최적화이다. 변수의 상수 전파, 공통 하위 표현식 제거가 해당된다.
+    - 지역 공통 부분식 제거
+    - 복사 전파
+    - 상수 폴딩
+  - 루프 최적화 : 반복문을 대상으로 수행되는 최적화로 루프 내 계산을 최소화하기 위한 변환을 수행한다. 루프 회전, 루프 병합  등이 있다.
+  - 전역 최적화 : 전체 프로그램을 대상으로 수행되는 최적화로, 더 넓은 범위의 정보를 활용해 최적화를 수행한다. 사용하지 않는 함수를 제거하거나, 전역 변수의 할당을 최적화하거나, 프로시저 인라인화등이 존재한다.
+    - 전역 공통 부분식 제거
 
 </br>
 
@@ -190,4 +205,4 @@
 
 </br>
 
-[parser](https://wan2.land/posts/2020/02/11/make-parser-1/), [파서에 대한 이해](https://edykim.com/ko/post/the-super-tiny-compiler/), [컴파일러](https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC), [유한 오토마타](https://www.geeksforgeeks.org/practice-problems-finite-automata-set-2/), [DFA,NFA](https://vhxpffltm.tistory.com/48)
+[parser](https://wan2.land/posts/2020/02/11/make-parser-1/), [파서에 대한 이해](https://edykim.com/ko/post/the-super-tiny-compiler/), [컴파일러](https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC), [유한 오토마타](https://www.geeksforgeeks.org/practice-problems-finite-automata-set-2/), [DFA,NFA](https://vhxpffltm.tistory.com/48), [컴파일러 최적화](https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C-%EC%8B%A4%ED%96%89%EA%B9%8C%EC%A7%80-1/)
