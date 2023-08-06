@@ -6,7 +6,7 @@
 - [ ] 컴파일 과정
   - [x] 구문 분석 단계
   - [x] 최적화 단계
-  - [ ] 코드 생성 단계
+  - [x] 코드 생성 단계
   - [ ] 링킹 단계
 - [ ] 결론
 
@@ -178,6 +178,24 @@
 
 </br>
 
+- 매크로 처리기와 어셈블러의 결합 형태로 처리가 되며, 최적화된 중간 코드를 기계어로 변환하는 마지막 단계이다.
+  - 매크로 처리기는 소스 코드 내의 매크로를 처리하고 확장한다.
+  - 최적화된 중간 코드가 어셈블리어로 변환되며, 어셈블러는 이를 기계어로 변환한다.
+  - 하드웨어 아키텍처에 맞는 기계어로 변환하는 마지막 단계이다.
+  
+
+- 목적 코드 생성기
+  - 명령어 선택, 명령어 스케줄링, 레지스터 할당과 배정이 가장 중요한 요소이다.
+  - 명령어 선택 : 목적 기계에 따라 적절한 명령을 선택 (다양한 명령어가 존재)
+  - 레지스터 할당과 배정 : 프로그램의 각 명령어가 어느 레지스터에 저장되어야 하는지 결정하는 것 (메모리보다 레지스터를 사용하면, 연산 속도가 빠르므로, 연산에 레지스터를 많이 사용해야함)
+  - 명령어 스케줄링 : 명령어들의 실행을 어떤 순서로 나열할지 결정하는 것 (연산 순서에 따라 레지스터의 개수나, 메모리 요구량이 달라짐)
+
+- 목적 코드를 생성한다. 이후 실행파일을 만들기 위해 링킹 단계로 전달된다.
+
+- 목적 컴퓨터
+  - 목적 컴퓨터는 n개의 범용 레지스터를 가진 바이트 주소 가능 기계로 컴파일러가 최종적으로 생성한 기계어 코드를 실행할 컴퓨터나 컴퓨터 계열이다.
+
+
 
 </br>
 
@@ -205,4 +223,4 @@
 
 </br>
 
-[parser](https://wan2.land/posts/2020/02/11/make-parser-1/), [파서에 대한 이해](https://edykim.com/ko/post/the-super-tiny-compiler/), [컴파일러](https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC), [유한 오토마타](https://www.geeksforgeeks.org/practice-problems-finite-automata-set-2/), [DFA,NFA](https://vhxpffltm.tistory.com/48), [컴파일러 최적화](https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C-%EC%8B%A4%ED%96%89%EA%B9%8C%EC%A7%80-1/)
+[parser](https://wan2.land/posts/2020/02/11/make-parser-1/), [파서에 대한 이해](https://edykim.com/ko/post/the-super-tiny-compiler/), [컴파일러](https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC), [유한 오토마타](https://www.geeksforgeeks.org/practice-problems-finite-automata-set-2/), [DFA,NFA](https://vhxpffltm.tistory.com/48), [컴파일러 최적화](https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C-%EC%8B%A4%ED%96%89%EA%B9%8C%EC%A7%80-1/), [어셈블리 프로그래밍](https://crasy.tistory.com/140)
