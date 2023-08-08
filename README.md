@@ -10,6 +10,7 @@
 
 - [TypeScript](https://github.com/wonholim/MyLearningJourney/tree/main/TypeScript)
     - [기본타입](https://github.com/wonholim/MyLearningJourney/blob/main/TypeScript/%EA%B8%B0%EB%B3%B8%20%ED%83%80%EC%9E%85.md)
+    - [함수](https://github.com/wonholim/MyLearningJourney/blob/main/TypeScript/%ED%95%A8%EC%88%98.md)
 
 </br></br>
 
