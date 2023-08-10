@@ -4,7 +4,7 @@
 - [x] 타입 추론의 기본 개념
 - [x] 타입 narrowing 없이 발생할 수 있는 문제점
 - [x] Type Guards 소개와 typeof
-- [ ] Truthiness checking
+- [x] Truthiness checking
 - [ ] Equality narrowing
 - [ ] The in operator narrowing
 - [ ] instanceof narrowing
@@ -20,6 +20,8 @@
 - [ ] 출처 
 
 ---
+
+</br></br>
 
 ## 타입 narrowing의 정의 및 중요성
 
@@ -125,7 +127,7 @@ function printAll(strs: string | string[] | null) {
   }
 }
 
-null일 경우 else로 넘어가서 처리되는게 맞지만, 실제론 object 타입이므로 null이 출력이 되는 불상사가 생겨난다.
+null일 경우 else로 넘어가서 처리되는게 맞지만, 실제론 object 타입이므로 TypeError: null is not iterable이 출력이 되는 불상사가 생겨난다.
 이는 자바스크립트의 오래된 오류로, 타입 스크립트에서는 이 오류를 인식하고, 예상하지 못한 오류를 방지하기 위해 타입을 더 정확하게 narrowing해준다.
 ```
 
@@ -136,6 +138,91 @@ null일 경우 else로 넘어가서 처리되는게 맞지만, 실제론 object 
 ---
 
 </br>
+
+- 자바스크립트에서는 조건문, && 연산자, || 연산자, if문, 불린, ! 등에서 어떤 표현식도 사용할 수 있다.
+- 예를 들어, if문의 조건이 항상 boolean 타입일 것으로 기대하지 않는 것처럼 말이다.
+
+```ts
+function getUsersOnlineMessage(numUsersOnline: number) {
+  if (numUsersOnline) {
+    return `There are ${numUsersOnline} online now!`;
+  }
+  return "Nobody's here. :(";
+}
+```
+
+- 자바스크립트에서는 if와 같은 구조가 먼저 조건을 boolean으로 강제 변환(coerce)하여, 이해하고, 그 결과가 참인지 거짓인지에 따라 분기를 선택한다.
+- 자바스크립트에서는 `truthy`와 `falsy`를 이용해, 조건문에서 진리 값을 평가한다.
+- `falsy`는 거짓으로 평가되는 값으로, 조건문이나 논리 연산자에서 진리 값을 검사할 때, 자동으로 false로 변환된다.
+> `0`, `NaN`, `""`, `0n` -> bigint의 0, `null`, `undefined`
+- `truthy`는 참으로 평가되는 값으로, 조건문이나 논리 연산자에서 진리 값을 검사할 때, 자동으로 true로 변환된다.
+>  falsy의 값을 제외한 모든 값
+
+- 자바스크립트는 불린 타입 대신 Truthiness checking을 한다. 즉, 특정값이 True인지, False인지 판별하기 위함이다.
+- 타입스크립트는 이런 런타임 동작을 기반으로 타입을 추론한다. !! 연산자를 사용할 경우, 타입스크립트는 더욱 구체적인 불린 리터럴 타입을 추론할 수 있다.
+
+```ts
+// both of these result in 'true'
+Boolean("hello"); // type: boolean, value: true
+!!"world"; // type: true,    value: true
+
+Boolean으로 감싸는 경우 타입은 불린이고, 값은 True이다.
+!! 연산자를 사용하는 경우, 타입은 true이고 값은 true이다.
+조금 더 타입에 대해 구체적으로 추론이 한다는 점이 다르다.
+```
+
+- null 또는 undefined와 같은 값에 대한 보호로, 이러한 동작을 활용하는 것은 인기가 많다. 예를들면 다음과 같다.
+
+```ts
+function printAll(strs: string | string[] | null) {
+  if (strs && typeof strs === "object") {
+    for (const s of strs) {
+      console.log(s);
+    }
+  } else if (typeof strs === "string") {
+    console.log(strs);
+  }
+}
+
+strs가 Truthiness checking을 하여, TypeError: null is not iterable이 발생하는 상황을 없앨 수 있다.
+하지만 종종 원시 값에 대한 Truthiness checking에서 오류가 발생할 수 있다.
+
+그러면 함수의 전체를 Truthiness checking로 감싸면 어떻게 될까?
+
+function printAll(strs: string | string[] | null) {
+  // !!!!!!!!!!!!!!!!
+  //  DON'T DO THIS!
+  //   KEEP READING
+  // !!!!!!!!!!!!!!!!
+  if (strs) {
+    if (typeof strs === "object") {
+      for (const s of strs) {
+        console.log(s);
+      }
+    } else if (typeof strs === "string") {
+      console.log(strs);
+    }
+  }
+}
+
+아쉽지만, ""인 빈 문자열이 통과하지 못하게 된다. 이 점을 주의하자.
+
+function multiplyAll(values: number[] | undefined, factor: number): number[] | undefined {
+  if (!values) {
+    return values;
+  } else {
+    return values.map((x) => x * factor);
+  }
+}
+
+위와 같이 !을 이용해, 연산을 뒤집어 줄 수 있다.
+```
+
+- 자바스크립트에서는 `truthy`와 `falsy`를 이용해, 조건문에서 진리 값을 평가한다.
+- `falsy`는 거짓으로 평가되는 값으로, 조건문이나 논리 연산자에서 진리 값을 검사할 때, 자동으로 false로 변환된다.
+
+- `truthy`는 참으로 평가되는 값으로, 조건문이나 논리 연산자에서 진리 값을 검사할 때, 자동으로 true로 변환된다.
+
 
 </br>
 
