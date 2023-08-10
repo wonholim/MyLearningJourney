@@ -15,9 +15,8 @@
 - [x] Discriminated unions
 - [x] The never type
 - [x] Exhaustiveness checking
-- [ ] 실제 코드에서 타입 narrowing가 어떻게 적용되는지
-- [ ] 타입 narrowing을 지원하는 도구와 라이브러리
-- [ ] 출처 
+- [x] 실제 코드에서 타입 narrowing가 어떻게 적용되는지
+- [x] 출처 
 
 ---
 
@@ -730,18 +729,54 @@ triangle에 대한 narrowing이 정의되지 않아 default에서 오류가 발�
 
 </br>
 
-</br>
+- Caprine 비공식 페이스북 메신저 앱 데스크탑
 
+```ts
+((window, Notification) => {
+	const notifications = new Map<number, Notification>();
 
-## 타입 narrowing을 지원하는 도구와 라이브러리
+	// Handle events sent from the browser process
+	window.addEventListener('message', ({data: {type, data}}) => {
+		if (type === 'notification-callback') {
+			const {callbackName, id}: NotificationCallback = data;
+			const notification = notifications.get(id);
 
----
+			if (!notification) {
+				return;
+			}
 
-</br>
+			if (notification[callbackName]) {
+				notification[callbackName]();
+			}
+
+			if (callbackName === 'onclose') {
+				notifications.delete(id);
+			}
+		}
+
+		if (type === 'notification-reply-callback') {
+			const {callbackName, id, previousConversation, reply}: NotificationReplyCallback = data;
+			const notification = notifications.get(id);
+
+			if (!notification) {
+				return;
+			}
+
+			if (notification[callbackName]) {
+				notification[callbackName]();
+			}
+
+			notifications.delete(id);
+			window.postMessage({type: 'notification-reply', data: {previousConversation, reply}}, '*');
+		}
+	});
+
+Truthiness checking와 Equality narrowing을 사용해서, 타입을 좁혀간다.
+```
 
 </br>
 
 
 ## 출처
 
-> 
+> [타입narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)
