@@ -11,7 +11,7 @@
 - [x] Assignments
 - [x] Control flow analysis
 - [x] Using type predicates
-- [ ] Assertion functions
+- [x] Assertion functions
 - [ ] Discriminated unions
 - [ ] The never type
 - [ ] Exhaustiveness checking
@@ -525,6 +525,53 @@ const fso: Networked & FileSystemObject
 ---
 
 </br>
+
+- Assertion 함수는 예상치 못한 일이 발생할 때, 오류를 발생시키는 특정 함수 집합을 의미한다.
+- Assertion 함수를 이용해서, 타입narrowing이 가능하다.
+- 타입스크립트가 느슨하게 타입을 검사하는 부분이존재하는데, 코드를 봐보면
+
+```ts
+let a: null, number = 2;
+
+function foo() {
+    a -> null | number
+    if (a == null) {
+        a -> null
+        return;
+    }
+    a -> number
+}
+
+if (a != null) foo();
+```
+
+- 분명히 foo() 함수의 실행 조건은 a가 null이 아닐 때 이지만, 실제 내부에서 a의 타입을 관찰해보면, null | number가 되어있음을 알 수 있다.
+- 이를 방지하기 위해 assert 함수를 사용한다.
+- 예시를 보며 이해해보자.
+
+```ts
+assert(someValue === 42);
+만약 someValue가 42와 같지 않다면, assert는 AssertionError를 발생시킨다.
+
+이렇게도 사용이 가능하다.
+function multiply(x, y) {
+  assert(typeof x === "number");
+  assert(typeof y === "number");
+  return x * y;
+}
+
+assert function을 구현해보면, 다음과 같다.
+function assert(condition: any, msg?: string): asserts condition {
+  if (!condition) {
+    throw new AssertionError(msg);
+  }
+}
+
+함수의 타입에 asserts라는 키워드가 존재하고, asserts는 타입을 보장하기 위해 인자를 가지게 된다.
+입력받은 condition인 참인 경우, 타입을 확실하게 보장받을 수 있다.
+```
+
+- 타입 가드 함수들을 통해, 타입스크립트를 안전하게 다룰 수 있다.
 
 </br>
 
