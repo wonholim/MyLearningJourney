@@ -8,7 +8,7 @@
 - [x] Equality narrowing
 - [x] The in operator narrowing
 - [x] instanceof narrowing
-- [ ] Assignments
+- [x] Assignments
 - [ ] Control flow analysis
 - [ ] Using type predicates
 - [ ] Assertion functions
@@ -362,13 +362,25 @@ instanceof는 주로 클래스와 관련된 언어에서 자주 사용되는 것
 
 </br>
 
-</br>
+- 타입스크립트는 변수에 값을 할당할 때, 할당의 오른쪽 부분을 살펴보고 왼쪽 부분을 적절하게 좁혀간다. 
+- 다음의 예시를 보며 이해해보자
 
-## Type Guards 소개
+```ts
+let x = Math.random() < 0.5 ? 10 : "hello world!"; // x는 문자열 혹은 숫자 타입
+-> let x: string | number 추론
+x = 1; // 숫자 1을 할당하면, x는 숫자 타입
 
----
+console.log(x); // x의 타입은 숫자
+-> let x: number
+x = "goodbye!"; // 문자열 "goodbye!"를 할당하면, x는 문자열 타입
+ 
+console.log(x); // x의 타입은 문자열
+-> let x: string
 
-</br>
+x = true; // error
+console.log(x);
+-> let x: string | number 이기 때문
+```
 
 </br>
 
