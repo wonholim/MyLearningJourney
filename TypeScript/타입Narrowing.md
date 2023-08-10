@@ -5,7 +5,7 @@
 - [x] 타입 narrowing 없이 발생할 수 있는 문제점
 - [x] Type Guards 소개와 typeof
 - [x] Truthiness checking
-- [ ] Equality narrowing
+- [x] Equality narrowing
 - [ ] The in operator narrowing
 - [ ] instanceof narrowing
 - [ ] Assignments
@@ -231,6 +231,59 @@ function multiplyAll(values: number[] | undefined, factor: number): number[] | u
 ---
 
 </br>
+
+- 타입스크립트는 `===`, `!==`, `==`, `!=`와 같은 switch 문과 동등성 검사를 사용해 타입 narrowing을 한다.
+- 코드를 살펴 보면 다음과 같다.
+
+```ts
+function example(x: string | number, y: string | boolean) {
+  if (x === y) {
+    // We can now call any 'string' method on 'x' or 'y'.
+    x.toUpperCase(); // (method) String.toUpperCase(): string
+    y.toLowerCase(); // (method) String.toLowerCase(): string
+  } else {
+    console.log(x); // (parameter) x: string | number
+    console.log(y); // (parameter) y: string | boolean
+  }
+}
+
+x와 y가 공통되는 타입은 string이므로, ===을 통해 서로 공통 된다면, string타입만 사용가능한 프로퍼티를 적용하고, 그 외에는 출력을 한다.
+또한 변수가 아닌 특정 리터럴 값과의 비교도 작동한다.
+
+Truthiness checking에서 사용 했던 printAll을 동등성 검사를 이용해서, 빈 문자열 문제를 해결할 수 잇다.
+
+function printAll(strs: string | string[] | null) {
+  if (strs !== null) {
+    if (typeof strs === "object") {
+      for (const s of strs) { // (parameter) strs: string[]
+        console.log(s);
+      }
+    } else if (typeof strs === "string") {
+      console.log(strs); // (parameter) strs: string
+    }
+  }
+}
+```
+
+- 주의할 점은 `== null`을 사용하면 값이 정확히 `null`인지 확인하는게 아닌, `undefined`인지 확인한다는 점이다.
+- `== undefined`또한 마찬가지로 `null`인지 추가적으로 확인하므로, 가능한 경우 엄격한 동등성 검사인 `===`과 `!==`을 사용해야한다.
+- 다음의 예제를 보면, 쉽게 이해가 가능하다.
+
+```ts
+interface Container {
+  value: number | null | undefined;
+}
+ 
+function multiplyValue(container: Container, factor: number) {
+  // Remove both 'null' and 'undefined' from the type.
+  if (container.value != null) {
+    console.log(container.value); // (property) Container.value: number
+ 
+    // Now we can safely multiply 'container.value'.
+    container.value *= factor;
+  }
+}
+```
 
 </br>
 
