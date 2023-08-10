@@ -2,15 +2,22 @@
 
 - [x] 타입 narrowing의 정의 및 중요성
 - [x] 타입 추론의 기본 개념
-- [ ] 예제와 함께 복잡한 타입 상황 설명
-- [ ] 타입 narrowing 없이 발생할 수 있는 문제점
-- [ ] Type Guards 소개
-- [ ] typeof, instanceof, 사용자 정의 타입 가드
-- [ ] 다양한 narrowing 사용
-- [ ] Discriminated Unions 사용
-- [ ] 실제 코드에서 타입 narrowing이 어떻게 적용되는지
-- [ ] 타입 narrowing의 장점과 단점
+- [x] 타입 narrowing 없이 발생할 수 있는 문제점
+- [x] Type Guards 소개와 typeof
+- [ ] Truthiness checking
+- [ ] Equality narrowing
+- [ ] The in operator narrowing
+- [ ] instanceof narrowing
+- [ ] Assignments
+- [ ] Control flow analysis
+- [ ] Using type predicates
+- [ ] Assertion functions
+- [ ] Discriminated unions
+- [ ] The never type
+- [ ] Exhaustiveness checking
+- [ ] 실제 코드에서 타입 narrowing가 어떻게 적용되는지
 - [ ] 타입 narrowing을 지원하는 도구와 라이브러리
+- [ ] 출처 
 
 ---
 
@@ -90,7 +97,41 @@ window.onscroll = function (uiEvent: any) { -> 타입 재정의
 
 </br>
 
-## 예제와 함께 복잡한 타입 상황 설명
+## Type Guards 소개와 typeof
+
+---
+
+</br>
+
+- 자바스크립트는 실행 시점에서, 가지는 값들의 매우 기본적인 타입 정보를 제공하는 typeof 연산자를 지원한다.
+> `string`, `number`, `bigint`, `boolean`, `symbol`, `undefined`, `object`, `function`
+
+- 보고나서, 이상한 점이 있을 것이다. 위의 목록에서 `null`이 빠져있음을 알 수 있다.
+- 사실 typeof null을 하게되면, `object 타입`이라고 알려준다. 
+
+- 다음의 예제를 한번 봐보자
+
+```ts
+function printAll(strs: string | string[] | null) {
+  if (typeof strs === "object") {
+    for (const s of strs) {
+      //'strs' is possibly 'null'.
+      console.log(s);
+    }
+  } else if (typeof strs === "string") {
+    console.log(strs);
+  } else {
+    // do nothing
+  }
+}
+
+null일 경우 else로 넘어가서 처리되는게 맞지만, 실제론 object 타입이므로 null이 출력이 되는 불상사가 생겨난다.
+이는 자바스크립트의 오래된 오류로, 타입 스크립트에서는 이 오류를 인식하고, 예상하지 못한 오류를 방지하기 위해 타입을 더 정확하게 narrowing해준다.
+```
+
+</br>
+
+## Truthiness checking
 
 ---
 
@@ -98,7 +139,23 @@ window.onscroll = function (uiEvent: any) { -> 타입 재정의
 
 </br>
 
-## 타입 narrowing 없이 발생할 수 있는 문제점
+## Equality narrowing
+
+---
+
+</br>
+
+</br>
+
+## The in operator narrowing
+
+---
+
+</br>
+
+</br>
+
+## Assignments
 
 ---
 
@@ -114,7 +171,7 @@ window.onscroll = function (uiEvent: any) { -> 타입 재정의
 
 </br>
 
-## typeof, instanceof, 사용자 정의 타입 가드
+## Control flow analysis
 
 ---
 
@@ -122,7 +179,7 @@ window.onscroll = function (uiEvent: any) { -> 타입 재정의
 
 </br>
 
-## 다양한 narrowing 사용
+## Using type predicates
 
 ---
 
@@ -130,7 +187,7 @@ window.onscroll = function (uiEvent: any) { -> 타입 재정의
 
 </br>
 
-## Discriminated Unions 사용
+## Assertion functions
 
 ---
 
@@ -138,7 +195,7 @@ window.onscroll = function (uiEvent: any) { -> 타입 재정의
 
 </br>
 
-## 실제 코드에서 타입 narrowing이 어떻게 적용되는지
+## Discriminated unions
 
 ---
 
@@ -146,8 +203,23 @@ window.onscroll = function (uiEvent: any) { -> 타입 재정의
 
 </br>
 
+## The never type
 
-## 타입 narrowing의 장점과 단점
+---
+
+</br>
+
+</br>
+
+## Exhaustiveness checking
+
+---
+
+</br>
+
+</br>
+
+## 실제 코드에서 타입 narrowing가 어떻게 적용되는지
 
 ---
 
