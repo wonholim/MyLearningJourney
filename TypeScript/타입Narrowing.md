@@ -13,7 +13,7 @@
 - [x] Using type predicates
 - [x] Assertion functions
 - [x] Discriminated unions
-- [ ] The never type
+- [x] The never type
 - [ ] Exhaustiveness checking
 - [ ] 실제 코드에서 타입 narrowing가 어떻게 적용되는지
 - [ ] 타입 narrowing을 지원하는 도구와 라이브러리
@@ -653,6 +653,9 @@ function getArea(shape: Shape) {
 
 </br>
 
+- Never를 사용해서, 모든 가능성을 제거해 남은 것이 없는 지점까지 유니온의 옵션을 줄일 수 있다.
+- 타입스크립트에 존재해서는 안 되는 상태를 나태내기 위해 never 타입을 사용한다.
+
 </br>
 
 ## Exhaustiveness checking
@@ -660,6 +663,8 @@ function getArea(shape: Shape) {
 ---
 
 </br>
+
+
 
 </br>
 
