@@ -12,7 +12,7 @@
 - [x] Control flow analysis
 - [x] Using type predicates
 - [x] Assertion functions
-- [ ] Discriminated unions
+- [x] Discriminated unions
 - [ ] The never type
 - [ ] Exhaustiveness checking
 - [ ] 실제 코드에서 타입 narrowing가 어떻게 적용되는지
@@ -580,6 +580,70 @@ function assert(condition: any, msg?: string): asserts condition {
 ---
 
 </br>
+
+- 지금까지는 대부분 문자열, 불린, 숫자와 같은 단순한 타입의 단일 변수를 좁혀나가는 데 중점이었지만, 대부분의 타입은 복잡한 구조를 가지고있다.
+- 다음의 예시를 봐보자.
+
+```ts
+interface Shape {
+  kind: "circle" | "square";
+  radius?: number;
+  sideLength?: number;
+}
+
+원은 반지름을 가지고, 사각형은 변의 길이를 가진다. 그리고 이를 가지는 Shape 인터페이스가 존재한다고 해보자.
+
+kind의 타입을 string이 아닌 circle과 square로 지정해서 다음과 같은 오류를 피할 수 있다.
+
+function handleShape(shape: Shape) {
+  // oops!
+  if (shape.kind === "rect") {
+This comparison appears to be unintentional because the types '"circle" | "square"' and '"rect"' have no overlap.
+    // ...
+  }
+}
+
+원과 사각형의 넓이를 계산하는 메서드를 작성했을 때,
+
+function getArea(shape: Shape) {
+  return Math.PI * shape.radius ** 2;
+'shape.radius' is possibly 'undefined'.
+}
+
+다음과 같이 작성할 경우, 원과 사각형 어떤 타입이 올지 모르게 된다.
+또한 strictNullChecks 옵션을 활성화 하게 되면, 타입스크립트는 null 또는 undefined가 될 수 있는 경우를 엄격하게 검사하게된다.
+
+function getArea(shape: Shape) {
+  if (shape.kind === "circle") {
+    return Math.PI * shape.radius ** 2;
+'shape.radius' is possibly 'undefined'.
+  }
+}
+
+와 같은 코드도 오류가 발생하게 된다.
+
+function getArea(shape: Shape) {
+  if (shape.kind === "circle") {
+    return Math.PI * shape.radius! ** 2;
+  }
+}
+
+와 같이 !를 붙이면, 타입스크립트에게 shape.radius가 값이 확실히 존재한다고 정의한다.
+하지만 이 방법은 그리 좋은 방법은 아니다.
+
+타입들이 공통 속성을 포함하는 경우, 타입스크립트에서 공통된 속성으로 멤버를 narrowing할 수 있다.
+
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius ** 2; // (parameter) shape: Circle
+    case "square":
+      return shape.sideLength ** 2; // (parameter) shape: Square
+  }
+}
+
+자바스크립트에서 네트워크를 통해, 메시지를 보낼 때, 상태를 관리하는 프레임워크에서 인코딩할 때와 같이 모든 종류의 메시징 체계를 나타내는데 좋다.
+```
 
 </br>
 
