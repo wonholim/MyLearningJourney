@@ -9,7 +9,7 @@
 - [x] The in operator narrowing
 - [x] instanceof narrowing
 - [x] Assignments
-- [ ] Control flow analysis
+- [x] Control flow analysis
 - [ ] Using type predicates
 - [ ] Assertion functions
 - [ ] Discriminated unions
@@ -377,10 +377,12 @@ x = "goodbye!"; // 문자열 "goodbye!"를 할당하면, x는 문자열 타입
 console.log(x); // x의 타입은 문자열
 -> let x: string
 
-x = true; // error
+x = true; // error Type 'boolean' is not assignable to type 'string | number'.
 console.log(x);
 -> let x: string | number 이기 때문
 ```
+
+- 첫번째 항당 후에, x의 타입이 숫자로 바뀌었어도, x에 문자열을 할당할 수 있다. 즉 선언된 타입 시작할 때의 타입이 string | number 이기 때문이며, 할당 가능성은 항상 선언된 타입과 비교하여 확인된다.
 
 </br>
 
@@ -389,6 +391,40 @@ console.log(x);
 ---
 
 </br>
+
+- 타입스크립트에서 특정 분기 내에서 어떻게 좁혀져가는지 배웠다. 하지만, 변수를 따라가며, if, while 문 등에서 타입 가드를 찾는 것보다 더 복잡한 과정이 발생하고 있다.
+- 다음의 예시를 보면
+
+```ts
+function padLeft(padding: number | string, input: string) {
+  if (typeof padding === "number") {
+    return " ".repeat(padding) + input;
+  }
+  return padding + input;
+}
+padding 이 number 타입일 경우, return padding + input;에 도달할 수 없음을 알 수 있다.
+즉 return padding + input;의 리턴 타입이 (number | string)에서 string으로 좁혀짐을 알 수 있다.
+```
+
+- 코드에서 도달 가능성을 기반으로 분석한 것을 제어 흐름 분석이라 하며, 타입 가드와 할당을 만날 때 흐름 분석을 사용해 타입을 좁혀간다.
+- 변수가 분석될 때 제어의 흐름은 분기하고 다시 합쳐지며, 각각의 변수는 지점마다 다른 타입을 가질 수 있음을 알 수 있다.
+- 다음의 코드를 보며 이해해보자.
+
+```ts
+function example() {
+  let x: string | number | boolean;
+  x = Math.random() < 0.5;
+  console.log(x); // let x: boolean
+  if (Math.random() < 0.5) {
+    x = "hello";
+    console.log(x); // let x: string
+  } else {
+    x = 100;
+    console.log(x); // let x: number
+  }
+  return x; // let x: string | number
+}
+```
 
 </br>
 
