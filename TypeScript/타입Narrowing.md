@@ -2,8 +2,7 @@
 
 - [x] 타입 narrowing의 정의 및 중요성
 - [x] 타입 추론의 기본 개념
-- [ ] 예제와 함께 복잡한 타입 상황 설명
-- [ ] 타입 narrowing 없이 발생할 수 있는 문제점
+- [x] 타입 narrowing 없이 발생할 수 있는 문제점
 - [ ] Type Guards 소개
 - [ ] typeof, instanceof, 사용자 정의 타입 가드
 - [ ] 다양한 narrowing 사용
@@ -90,19 +89,31 @@ window.onscroll = function (uiEvent: any) { -> 타입 재정의
 
 </br>
 
-## 예제와 함께 복잡한 타입 상황 설명
-
----
-
-</br>
-
-</br>
-
 ## 타입 narrowing 없이 발생할 수 있는 문제점
 
 ---
 
 </br>
+
+- 타입 narrowing이 없다면, 발생할 수 있는 문제점은 다음과 같다.
+
+```ts
+type Cat = { name: string; 냐용: () => string };
+type Dog = { name: string; 멍: () => string };
+
+function 짖어(animal: Cat | Dog) {
+  return animal.냐옹();
+}
+
+let cat: Cat = { name: "고양이", 냐옹: () => "냐옹" };
+짖어(cat);
+
+간단한 예시에서, 매개변수 animal은 고양이 타입과 강아지 타입을 통과시켜준다.
+강아지는 멍 프로퍼티를 가지고
+고양이는 냐옹 프로퍼티를 가진다.
+하지만 return의 경우, 고양이만 가지는 냐옹을 돌려주므로, 강아지 타입이 들어올 경우 에러가 발생한다.
+자바스크립트에서는 이런 상황이 자주 반복되었는데, 타입스크립트에서는 이를 해결하기 위해 타입 가드를 사용한다.
+```
 
 </br>
 
