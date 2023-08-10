@@ -7,7 +7,7 @@
 - [x] Truthiness checking
 - [x] Equality narrowing
 - [x] The in operator narrowing
-- [ ] instanceof narrowing
+- [x] instanceof narrowing
 - [ ] Assignments
 - [ ] Control flow analysis
 - [ ] Using type predicates
@@ -328,6 +328,30 @@ function move(animal: Fish | Bird | Human) {
 이전에서 인간만 추가해보면, 인간은 모두 할수있기 때문에, 양쪽 선택지에 모두 추가된다.
 이 점에 유의해서, 특정 타입에 대해, 어떤 속성이 선택적으로 존재할 수 있는지, in을 사용해서 유니온 타입의 멤버를 좁힐 수 있는지 잘 판단해야한다.
 인간 타입의 경우, 타입을 정확하게 좁히기 어려울 수 있다.
+```
+
+</br>
+
+## instanceof narrowing
+
+---
+
+</br>
+
+- 자바스크립트에는 값이 다른 값의 인스턴스인지 확인하는 연산자가 존재한다. 다음의 예시를 보며 이해해보자.
+
+```ts
+function logValue(x: Date | string) {
+  if (x instanceof Date) {
+    console.log(x.toUTCString()); // x는 Date
+  } else {
+    console.log(x.toUpperCase()); // x는 string
+  }
+}
+
+x instanceof Foo는 x의 프로토타입 체인에 Foo.prototype이 포함되어있는지 확인한다.
+즉 new 로 구성할 수 있는 대부분의 값에 유용하게 사용할 수 있으며, instanceof도 타입가드이며, 타입narrowing에 사용된다.
+instanceof는 주로 클래스와 관련된 언어에서 자주 사용되는 것을 의미하므로, 그 목적에 맞게 사용하자.
 ```
 
 </br>
