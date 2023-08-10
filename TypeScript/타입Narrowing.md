@@ -14,7 +14,7 @@
 - [x] Assertion functions
 - [x] Discriminated unions
 - [x] The never type
-- [ ] Exhaustiveness checking
+- [x] Exhaustiveness checking
 - [ ] 실제 코드에서 타입 narrowing가 어떻게 적용되는지
 - [ ] 타입 narrowing을 지원하는 도구와 라이브러리
 - [ ] 출처 
@@ -664,7 +664,63 @@ function getArea(shape: Shape) {
 
 </br>
 
+- never 타입은 모든 타입에 할당이 가능하지만, 어떤 타입도 never에는 할당이 불가능하다. (never 자체는 제외한다.)
+- switch 문에서 완전한 검사를 수행하기 위해, 축소를 사용하고, never가 나타나는 것에 의존할 수 있음을 의미한다.
+- 예를 들어, 모든 가능한 경우가 처리되었을 때 오류를 발생시키지 않도록 우리의 getArea 함수에 기본값을 추가하여 모양을 'never'에 할당하려고 하면 된다.
 
+- 다음의 코드를 보면,
+
+```ts
+interface Circle {
+    kind: "circle";
+    radius: number;
+}
+
+interface Square {
+    kind: "square";
+    sideLength: number;
+}
+
+type Shape = Circle | Square;
+
+function getArea(shape: Shape) {
+    switch (shape.kind) {
+        case "circle":
+            return Math.PI * shape.radius ** 2;
+        case "square":
+            return shape.sideLength ** 2;
+        default:
+            const _exhaustiveCheck: never = shape;
+            return _exhaustiveCheck;
+    }
+}
+
+다음의 코드는 default에서 never 타입을 받는 _exhaustiveCheck에 빨간줄이 발생하지 않는다.
+모든 타입narrowing에 대한 처리가 끝났기 때문이다.
+
+이 상황에서 새로운 삼각형 인터페이스가 추가된다면 어떻게 될까?
+
+interface Triangle {
+  kind: "triangle";
+  sideLength: number;
+}
+
+type Shape = Circle | Square | Triangle;
+ 
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius ** 2;
+    case "square":
+      return shape.sideLength ** 2;
+    default:
+      const _exhaustiveCheck: never = shape; // Type 'Triangle' is not assignable to type 'never'.
+      return _exhaustiveCheck;
+  }
+}
+
+triangle에 대한 narrowing이 정의되지 않아 default에서 오류가 발생한다.
+```
 
 </br>
 
