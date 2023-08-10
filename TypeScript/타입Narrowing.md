@@ -10,7 +10,7 @@
 - [x] instanceof narrowing
 - [x] Assignments
 - [x] Control flow analysis
-- [ ] Using type predicates
+- [x] Using type predicates
 - [ ] Assertion functions
 - [ ] Discriminated unions
 - [ ] The never type
@@ -433,6 +433,90 @@ function example() {
 ---
 
 </br>
+
+- 지금까지는 자바스크립트의 구조를 사용해서 타입을 좁혀왔지만, 때로는 코드 전반에서 타입의 변화를 직접 제어할 필요가 있을 수 있다.
+- 사용자 정의 타입 가드를 정의하려면 반환 타입이 타입 예측인 함수를 정의하면 된다.
+- 다음의 코드를 봐보자
+
+```ts
+function isFish(pet: Fish | Bird): pet is Fish {
+  return (pet as Fish).swim !== undefined;
+}
+
+여기서 리턴 타입인 pet is Fish는 타입 예측이다. 예측의 형태는 parameterName is Type의 형태를 취하며, parameterName은 함수 서명의 매개변수 이름이어야한다.
+isFish에 매개변수와 함께 호출될 때, 타입스크립트는 원래 타입이 호환되는 경우 해당 변수를 특정한 타입으로 좁힌다.
+
+let pet = getSmallPet();
+
+if (isFish(pet)) {
+  pet.swim();
+} else {
+  pet.fly();
+}
+
+직접 정의한 타입 가드로 타입 스크립트는 if문의 분기에서 pet이 fish임을 알고 있고, else에서는 Fish가 아니므로, Bird임을 알 수 있다. 
+
+또한 타입을 기준으로 필터링 하는 경우도 사용이 가능하다.
+const zoo: (Fish | Bird)[] = [getSmallPet(), getSmallPet(), getSmallPet()];
+const underWater1: Fish[] = zoo.filter(isFish);
+// 또는 동등하게
+const underWater2: Fish[] = zoo.filter(isFish) as Fish[];
+
+// 더 복잡한 예제의 경우 예측이 반복될 필요가 있을 수 있습니다
+const underWater3: Fish[] = zoo.filter((pet): pet is Fish => {
+  if (pet.name === "sharkey") return false;
+  return isFish(pet);
+});
+
+타입 가드 isFish를 사용해서, Fish | Bird 배열을 필터링하고, Fish 배열을 얻는 코드이다.
+```
+
+- 또한 클래스 내에서 this를 기반으로한 타입 가드를 정의할 수 있다.
+
+```ts
+class FileSystemObject {
+  isFile(): this is FileRep {
+    return this instanceof FileRep;
+  }
+  isDirectory(): this is Directory {
+    return this instanceof Directory;
+  }
+  isNetworked(): this is Networked & this {
+    return this.networked;
+  }
+  constructor(public path: string, private networked: boolean) {}
+}
+ 
+class FileRep extends FileSystemObject {
+  constructor(path: string, public content: string) {
+    super(path, false);
+  }
+}
+ 
+class Directory extends FileSystemObject {
+  children: FileSystemObject[];
+}
+ 
+interface Networked {
+  host: string;
+}
+ 
+const fso: FileSystemObject = new FileRep("foo/bar.txt", "foo");
+ 
+if (fso.isFile()) {
+  fso.content;
+  
+const fso: FileRep
+} else if (fso.isDirectory()) {
+  fso.children;
+  
+const fso: Directory
+} else if (fso.isNetworked()) {
+  fso.host;
+  
+const fso: Networked & FileSystemObject
+}
+```
 
 </br>
 
