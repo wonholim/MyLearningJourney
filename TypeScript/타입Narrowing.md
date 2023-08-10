@@ -6,7 +6,7 @@
 - [x] Type Guards 소개와 typeof
 - [x] Truthiness checking
 - [x] Equality narrowing
-- [ ] The in operator narrowing
+- [x] The in operator narrowing
 - [ ] instanceof narrowing
 - [ ] Assignments
 - [ ] Control flow analysis
@@ -292,6 +292,43 @@ function multiplyValue(container: Container, factor: number) {
 ---
 
 </br>
+
+- 자바스크립트에는 객체나 프로토타입 체인이 특정 이름의 속성을 가지고 있는지 확인하는 연산자가 존재한다. 바로 `in`이다.
+- 타입스크립트에서는 타입 narrowing 방법으로 고려한다.
+- 다음의 예제를 봐보자.
+
+```js
+type Fish = { swim: () => void };
+type Bird = { fly: () => void };
+ 
+function move(animal: Fish | Bird) {
+  if ("swim" in animal) {
+    return animal.swim();
+  }
+ 
+  return animal.fly();
+}
+
+if ("swim" in animal)에서 "swim"은 문자열 리터럴이고, animal은 Fish와 Bird 유니온 타입이다.
+"swim"을 변동되는 값이라고 했을 때, animal안의 속성 값으로 타입을 좁힐 수 있다.
+그러면 만약 수영과 비행을 둘다할 수 있는 인간이 추가되면 어떻게 나누게 될까?
+
+type Fish = { swim: () => void };
+type Bird = { fly: () => void };
+type Human = { swim?: () => void; fly?: () => void };
+ 
+function move(animal: Fish | Bird | Human) {
+  if ("swim" in animal) {
+    animal; // (parameter) animal: Fish | Human
+  } else {
+    animal; // (parameter) animal: Bird | Human
+  }
+}
+
+이전에서 인간만 추가해보면, 인간은 모두 할수있기 때문에, 양쪽 선택지에 모두 추가된다.
+이 점에 유의해서, 특정 타입에 대해, 어떤 속성이 선택적으로 존재할 수 있는지, in을 사용해서 유니온 타입의 멤버를 좁힐 수 있는지 잘 판단해야한다.
+인간 타입의 경우, 타입을 정확하게 좁히기 어려울 수 있다.
+```
 
 </br>
 
