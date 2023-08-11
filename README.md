@@ -12,6 +12,7 @@
     - [기본타입](https://github.com/wonholim/MyLearningJourney/blob/main/TypeScript/%EA%B8%B0%EB%B3%B8%20%ED%83%80%EC%9E%85.md)
     - [함수](https://github.com/wonholim/MyLearningJourney/blob/main/TypeScript/%ED%95%A8%EC%88%98.md)
     - [인터페이스](https://github.com/wonholim/MyLearningJourney/blob/main/TypeScript/%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
+    - [타입Narrowing](https://github.com/wonholim/MyLearningJourney/blob/main/TypeScript/%ED%83%80%EC%9E%85Narrowing.md)
 
 </br></br>
 
