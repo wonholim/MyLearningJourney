@@ -3,7 +3,7 @@
 - [x] Mixin이란
 - [x] Mixin은 어떻게 작동하는가?
 - [x] Constrained Mixins
-- [ ] Alternative Pattern
+- [x] Alternative Pattern
 - [ ] Constraints
 - [ ] 참고자료
 
@@ -88,6 +88,34 @@ console.log(flappySprite.scale);
 
 <br/>
 
+- Mixin을 이용해서 제한된 클래스 타입만을 이용해 리턴 시켜줄 수 있다.
+- 이전 코드에서 생성자 타입에 제네릭 인자를 받아들일 수 있도록 수정한다.
+
+```ts
+// 이전 생성자 타입
+type Constructor = new (...args: any[]) => {};
+// 제네릭을 사용해서, 제약을 걸어줄 예정
+type GConstructor<T = {}> = new (...args: any[]) => T;
+
+이렇게 된다면, 제약된 베이스 클래스와 함께 작동하는 클래스를 생성할 수 있다.
+
+type Positionable = GConstructor<{ setPos: (x: number, y: number) => void }>;
+type Spritable = GConstructor<Sprite>;
+type Loggable = GConstructor<{ print: () => void }>;
+
+이후, 특정 베이스를 기반으로 작동하는 Mixin을 만들 수 있게된다.
+
+function Jumpable<TBase extends Positionable>(Base: TBase) {
+  return class Jumpable extends Base {
+    jump() {
+      // 이 믹스인은 setPos가 정의된 베이스 클래스를 전달받아야만 작동한다.
+      // Positionable 제약 때문이다.
+      this.setPos(0, 20);
+    }
+  };
+}
+```
+
 <br/>
 
 ## Alternative Pattern
@@ -95,6 +123,41 @@ console.log(flappySprite.scale);
 ---
 
 <br/>
+
+- Mixin문서에서 과거 문서에는 런타임과 타입 계층을 따로 생성한 뒤, 마지막에 병합하는 방식으로 Mixin을 작성하는 방법을 추천했다.
+
+```ts
+// 각 믹스인은 전통적인 ES 클래스이다.
+class Jumpable {
+  jump() {}
+}
+
+class Duckable {
+  duck() {}
+}
+
+// 베이스를 클래스합니다.
+class Sprite {
+  x = 0;
+  y = 0;
+}
+
+// 그런 다음 인터페이스를 생성하여 기대되는 믹스인과 베이스의 동일한 이름을 병합한다.
+interface Sprite extends Jumpable, Duckable {}
+// JS 런타임에서 믹스인을 베이스 클래스에 적용한다.
+applyMixins(Sprite, [Jumpable, Duckable]);
+
+let player = new Sprite();
+player.jump();
+console.log(player.x, player.y);
+
+// 이 코드는 코드베이스의 어느 곳에서나 사용할 수 있는 함수를 작성하는 것이다.
+// 클래스들을 가져와 적용한다.
+declare function applyMixins(derivedCtor: any, constructors: any[]): void;
+```
+
+- 하지만, 이 패턴의 가장 큰 문제는 제네릭을 사용한 Mixin보다 까다롭다는 것이다.
+- 제네릭 사용을 권장한다.
 
 <br/>
 
