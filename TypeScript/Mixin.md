@@ -2,7 +2,7 @@
 
 - [x] Mixin이란
 - [x] Mixin은 어떻게 작동하는가?
-- [ ] Constrained Mixins
+- [x] Constrained Mixins
 - [ ] Alternative Pattern
 - [ ] Constraints
 - [ ] 참고자료
