@@ -4,8 +4,8 @@
 - [x] Mixin은 어떻게 작동하는가?
 - [x] Constrained Mixins
 - [x] Alternative Pattern
-- [ ] Constraints
-- [ ] 참고자료
+- [x] Constraints
+- [x] 참고자료
 
 ---
 
@@ -157,6 +157,7 @@ declare function applyMixins(derivedCtor: any, constructors: any[]): void;
 ```
 
 - 하지만, 이 패턴의 가장 큰 문제는 제네릭을 사용한 Mixin보다 까다롭다는 것이다.
+- 컴파일러가 자동적으로 처리해주는 부분이 적고, 개발자가 직접 코드를 관리하면서 런타임 동작과 타입 시스템이 일치하도록 많은 노력이 필요하기 때문이다.
 - 제네릭 사용을 권장한다.
 
 <br/>
@@ -167,6 +168,62 @@ declare function applyMixins(derivedCtor: any, constructors: any[]): void;
 
 <br/>
 
+- 타입 스크립트에서는 Control Flow Analysis(타입 Narrowing)을 컴파일 내에서 지원하여, Mixin 패턴도 기본적으로 지원이 된다. 하지만, 한계가 존재한다.
+- Control Flow Analysis를 통해 Mixin을 제공할 때, 데코레이터를 사용할 수 없다.
+
+```ts
+// 믹스인 패턴을 복제하는 데코레이터 함수
+const Pausable = (target: typeof Player) => {
+  return class Pausable extends target {
+    shouldFreeze = false;
+  };
+};
+
+@Pausable
+class Player {
+  x = 0;
+  y = 0;
+}
+
+// Player 클래스는 데코레이터의 타입이 병합되지 않는다
+const player = new Player();
+player.shouldFreeze; // 'shouldFreeze' 프로퍼티가 'Player' 타입에 존재하지 않는다.
+
+// 런타임 측면은 수동으로 타입 구성이나 인터페이스 병합을 통해 복제될 수 있다.
+type FreezablePlayer = Player & { shouldFreeze: boolean };
+
+const playerTwo = (new Player() as unknown) as FreezablePlayer;
+playerTwo.shouldFreeze;
+```
+
+- 데코레이터를 사용해서, Mixin 패턴을 구현할 때 타입스크립트의 컴파일 타임에는 적용이 되지않아서, 런타임에서 수동으로 타입을 조합하거나 인터페이스를 병합해야한다.
+
+<br/>
+
+- 클래스 표현식 패턴을 사용하게 된다면, 싱글톤(싱글톤 그 자체가 아닌, 여러 타입의 정적 프로퍼티를 가진 클래스를 만들기 어렵다는 뜻이다.)이 생성되어 서로 다른 변수 타입을 지원할 수 없게 된다. 즉, 동일한 클래스 표현식을 사용하면, 항상 동일한 타입을 가지게 된다.
+- 이에 우리는 제네릭을 사용해서, 다른 클래스를 반환하는 함수를 사용하는 방법을 제시한다.
+
+```ts
+function base<T>() {
+  class Base {
+    static prop: T;
+  }
+  return Base;
+}
+ 
+function derived<T>() {
+  class Derived extends base<T>() {
+    static anotherProp: T;
+  }
+  return Derived;
+}
+ 
+class Spec extends derived<string>() {}
+ 
+Spec.prop; // string
+Spec.anotherProp; // string
+```
+
 <br/>
 
 ## 참고자료
@@ -174,5 +231,7 @@ declare function applyMixins(derivedCtor: any, constructors: any[]): void;
 ---
 
 <br/>
+
+> [타입스크립트 공식 문서](https://www.typescriptlang.org/docs/handbook/mixins.html)
 
 <br/>
