@@ -1,7 +1,7 @@
 # Sass
 
 - [x] Sass란?
-- [ ] 설치 및 설정
+- [x] 설치 및 설정
 - [ ] 기본 문법
   - [ ] 변수
   - [ ] 중첩
@@ -46,6 +46,9 @@
 ---
 
 <br/>
+
+- VSCode의 경우
+  - <img width="772" alt="image" src="https://user-images.githubusercontent.com/56383948/260661995-d6c64d82-2cb8-4b45-9533-fd5a68620014.png">
 
 <br/>
 
