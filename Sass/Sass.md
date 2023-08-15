@@ -12,7 +12,7 @@
   - [x] 함수
   - [x] 조건문과 반복문
   - [x] 플레이스홀더와 확장
-- [ ] 참고 자료
+- [x] 참고 자료
 
 ---
 
@@ -454,5 +454,7 @@ $theme: dark;
 ---
 
 <br/>
+
+> [인파](https://inpa.tistory.com/entry/SCSS-%F0%9F%92%8E-%EC%A1%B0%EA%B1%B4%EB%AC%B8-%EB%B0%98%EB%B3%B5%EB%AC%B8?category=890793), [sass](https://sass-lang.com/), [extend](https://www.w3schools.com/sass/sass_extend.php), [sass문법정리](https://seokzin.tistory.com/entry/SCSS-SCSS-%EB%AC%B8%EB%B2%95-%EC%A0%95%EB%A6%AC), [sass와 scss](https://nykim.work/97), [플레이스홀더](https://abcdqbbq.tistory.com/85)
 
 <br/>
