@@ -5,7 +5,7 @@
 - [x] 기본 문법
   - [x] 변수
   - [x] 중첩
-  - [ ] 파티얼과 임포트
+  - [x] partials and import
   - [ ] 믹스인과 인클루드
   - [ ] 연산자 사용
 - [ ] 고급 문법
@@ -194,11 +194,46 @@ button.disabled {
 }
 ```
 
+![image](https://user-images.githubusercontent.com/56383948/260674166-41b52fc1-ba2b-481f-9d2b-064aad36ae09.png)
+
+
 <br/>
 
-### 파티얼과 임포트
+### partials and import
 
 <br/>
+
+- partials and import를 사용하면, 스타일 시트를 여러 파일로 분리하고, 재사용이 가능하다. 코드를 구조화시킬 수 있으며, 유지 보수를 돕는다.
+
+- Partials의 경우 파일 이르이 _로 시작하는 scss파일은 partial로 간주한다.
+- @import를 통해, partial파일을 다른 scss 파일에서 가져올 수 있다.
+
+```scss
+_var.scss
+$primary-color: #3498db;
+$secondary-color: #f39c12;
+
+main.scss
+@import 'var'; // 파일 확장자와 언더스코어를 생략할 수 있다.
+
+body {
+  background-color: $primary-color;
+}
+
+button {
+  color: $secondary-color;
+}
+
+빌드 후
+
+body {
+  background-color: #3498db;
+}
+
+button {
+  color: #f39c12;
+}
+```
 
 <br/>
 
