@@ -7,7 +7,7 @@
   - [x] 중첩
   - [x] partials and import
   - [x] 믹스인과 인클루드
-  - [ ] 연산자 사용
+  - [x] 연산자 사용
 - [ ] 고급 문법
   - [ ] 함수
   - [ ] 조건문과 반복문
@@ -285,6 +285,27 @@ css 파일 생성
 ### 연산자 사용
 
 <br/>
+
+- Scss에서는 수치 값에 대해 간단한 연산이 적용가능하다. 덧셈, 뺄셈, 곱셈, 나눗셈 등의 기본 연산자를 사용할 수 있다.
+
+```scss
+$padding: 10px;
+$border-width: 2px;
+
+.container {
+  width: 300px - $border-width * 2;
+  padding: $padding;
+  border: $border-width solid #000;
+}
+
+빋드 후
+
+.container {
+  width: 296px;
+  padding: 10px;
+  border: 2px solid #000;
+}
+```
 
 <br/>
 
