@@ -4,7 +4,7 @@
 - [x] 설치 및 설정
 - [x] 기본 문법
   - [x] 변수
-  - [ ] 중첩
+  - [x] 중첩
   - [ ] 파티얼과 임포트
   - [ ] 믹스인과 인클루드
   - [ ] 연산자 사용
@@ -120,6 +120,79 @@
 ### 중첩
 
 <br/>
+
+- 일반적인 CSS에서는 특정 선택자 자식, 자손의 선택자를 스타링일 하려면 따로 선언을 해주야하는 불편함이 있었다.
+- Sass에서는 {}안에 중첩해서, 적용이 가능하다.
+
+```scss
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+
+      a {
+        display: block;
+        padding: 6px 12px;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+은 다음과 같이 변한다.
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+```
+
+- & 기호를 사용해서 부모 선택자를 참조할 수 있다.
+
+```scss
+button {
+  padding: 10px;
+  background: blue;
+  color: white;
+
+  &:hover {
+    background: darkblue;
+  }
+
+  &.disabled {
+    background: gray;
+    cursor: not-allowed;
+  }
+}
+
+은 다음과 같이 변한다.
+
+button {
+  padding: 10px;
+  background: blue;
+  color: white;
+}
+button:hover {
+  background: darkblue;
+}
+button.disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+```
 
 <br/>
 
