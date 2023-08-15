@@ -11,7 +11,7 @@
 - [x] 고급 문법
   - [x] 함수
   - [x] 조건문과 반복문
-  - [ ] 플레이스홀더와 확장
+  - [x] 플레이스홀더와 확장
 - [ ] 참고 자료
 
 ---
@@ -346,11 +346,106 @@ $border-width: 2px;
 
 <br/>
 
+- Scss에서는 @if, @else, @for 등의 지시어를 사용해서, 조건문과 반복문을 작성할 수 있다.
+
+```scss
+$theme: dark;
+
+.button {
+  @if $theme == dark {
+    background-color: #000;
+    color: #fff;
+  } @else {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+@for $i from 1 through 3 {
+  .col-#{$i} {
+    width: $i * 33.333%;
+  }
+}
+
+빌드 후
+
+.button {
+  background-color: #000;
+  color: #fff;
+}
+
+.col-1 {
+  width: 33.333%;
+}
+
+.col-2 {
+  width: 66.666%;
+}
+
+.col-3 {
+  width: 99.999%;
+}
+```
+
 <br/>
 
 ### 플레이스홀더와 확장
 
 <br/>
+
+- 플레이스홀더 선택자는 %문자와 함께 사용한다.
+- 단독으로 사용할 경우 css에 컴파일이 되지 않는다.
+- 함수나 변수를 사용하듯 내가 원하는 요소에 불러와서 사용할 수 있다.
+- 만들어 놓은 플레이스홀더 선택자는 @extend를 통해 호출한다.
+
+```scss
+%button-shared {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+}
+
+.primary-button {
+  @extend %button-shared;
+  background-color: #3498db;
+}
+
+.secondary-button {
+  @extend %button-shared;
+  background-color: #f39c12;
+}
+
+빌드 후
+
+.secondary-button, .primary-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+}
+
+.primary-button {
+  background-color: #3498db;
+}
+
+.secondary-button {
+  background-color: #f39c12;
+}
+
+단독으로 사용할 경우 css에 컴파일이 되지 않는다.
+
+%button-unused {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+}
+
+코드의 경우 빌드를 하면,
+
+아무것도 존재하지 않는다.
+```
 
 <br/>
 
