@@ -6,7 +6,7 @@
   - [x] 변수
   - [x] 중첩
   - [x] partials and import
-  - [ ] 믹스인과 인클루드
+  - [x] 믹스인과 인클루드
   - [ ] 연산자 사용
 - [ ] 고급 문법
   - [ ] 함수
@@ -240,6 +240,45 @@ button {
 ### 믹스인과 인클루드
 
 <br/>
+
+- Scss에서 Mixin은 재사용 가능한 스타일 블록을 정의하는 방법이고, @include 지시어를 사용해서, 해당 Mixin을 포함할 수 있다.
+
+```scss
+@mixin button-styles($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+}
+
+.primary-button {
+  @include button-styles(#3498db, #fff);
+}
+
+.secondary-button {
+  @include button-styles(#f39c12, #333);
+}
+
+
+css 파일 생성
+
+.primary-button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+}
+
+.secondary-button {
+  background-color: #f39c12;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+}
+```
 
 <br/>
 
