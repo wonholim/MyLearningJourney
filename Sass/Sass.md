@@ -2,8 +2,8 @@
 
 - [x] Sass란?
 - [x] 설치 및 설정
-- [ ] 기본 문법
-  - [ ] 변수
+- [x] 기본 문법
+  - [x] 변수
   - [ ] 중첩
   - [ ] 파티얼과 임포트
   - [ ] 믹스인과 인클루드
@@ -47,8 +47,35 @@
 
 <br/>
 
-- VSCode의 경우
-  - <img width="772" alt="image" src="https://user-images.githubusercontent.com/56383948/260661995-d6c64d82-2cb8-4b45-9533-fd5a68620014.png">
+- VSCode 기준
+
+  <img width="772" alt="image" src="https://user-images.githubusercontent.com/56383948/260661995-d6c64d82-2cb8-4b45-9533-fd5a68620014.png">
+
+  - Sass를 실시간으로 컴파일 해주는 플러그인
+
+  <img width="772" alt="image" src="https://user-images.githubusercontent.com/56383948/260663375-e2140e0c-163b-40da-9b80-f9e185cad268.png">
+
+  - Scss, CSS에만 초점을 맞춘 prettier
+
+  <img width="772" alt="image" src="https://user-images.githubusercontent.com/56383948/260663592-8021f18e-8127-4f05-8665-862f5ab8ddcb.png">
+  
+  - scss파일을 저장할 때마다, 오류를 발견하면, 밑줄 및 강조표시를 하여 오률를 표시한다.
+
+  <img width="772" alt="image" src="https://user-images.githubusercontent.com/56383948/260663708-57ffa9c9-12de-451f-a27b-b4a4a5219b9f.png">
+
+  - scss 스니펫
+
+  <img width="772" alt="image" src="https://user-images.githubusercontent.com/56383948/260663830-a062f7f9-ef0a-4179-89e8-749ce0fe5c70.png">
+
+  - 자신이 속한 규칙의 이름과 함께 SCSS 코드의 닫는 괄호 옆, 주석을 추가해준다.
+
+- 설치를 하고 난 뒤, .scss 또는 .sass파일을 생성하고, 하단의 live 버튼을 누르게 되면, 수정이 될 때 마다, 변경사항에 맞추어서 저장이된다.
+  <img width="158" alt="image" src="https://user-images.githubusercontent.com/56383948/260666724-6b3ddcca-23bf-4d79-8a35-3ae6d4c7ceb1.png">
+
+---
+
+- 위 내용이 번거롭다면, scss파일을 저장하면 바로 css로 컴파일 해주는 익스텐션이 존재하고 또한 타입스크립트도 지원한다.
+  <img width="733" alt="image" src="https://user-images.githubusercontent.com/56383948/260668733-1c48c20e-4ffb-4263-acd2-810f9becfd32.png">
 
 <br/>
 
@@ -58,9 +85,35 @@
 
 <br/>
 
+- Sass에 대해 처음 접하면서 알게된 것은 Scss이다.
+- Scss는 Sass의 버전 3에서 등장한 언어이다.
+- Sass는 파이썬과 같이 들여 쓰기 + 줄 바꿈 형식을 지원한다.
+- Scss는 기존 전통 언어와 같이 중괄호 + 세미콜론의 형식을 지원한다.
+- Scss 문법을 기반으로 코드를 작성하게 되면, Sass의 전처리기 도움을 받고 컴파일러가 CSS로 빌드한다.
+- `가장 중요한 점은, Sass보다 Scss를 선호하며, 대다수의 라이브러리, 프레임워크가 Scss 문법을 활용한다.`
+- `.sass`와 `.scss`는 엄연히 다른 파일이다. 파일에 따라, 올바른 문법을 사용해야 한다.
+
+<br/>
+
 ### 변수
 
 <br/>
+
+- Sass는 `Numbers`, `Strings`, `Colors`, `Booleans`, `Nulls`, `List`, `Maps`의 데이터 종류를 가지고 있다.
+
+- 변수를 사용할 때는 `$`문자를 사용해서 변수를 선언하고 사용한다.
+
+<img width="363" alt="image" src="https://user-images.githubusercontent.com/56383948/260671197-1d83d51d-f1b8-4c67-a849-1acb7467ef96.png">
+
+> Scss의 경우
+
+<img width="363" alt="image" src="https://user-images.githubusercontent.com/56383948/260671768-7a41ccd7-d810-486f-b905-d841c8ab7df6.png">
+
+> Css로 빌드된 경우
+
+![image](https://user-images.githubusercontent.com/56383948/260672453-d324948f-1bd1-4c94-85e3-508902755fd1.png)
+
+
 
 <br/>
 
