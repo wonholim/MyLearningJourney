@@ -8,8 +8,8 @@
   - [x] partials and import
   - [x] 믹스인과 인클루드
   - [x] 연산자 사용
-- [ ] 고급 문법
-  - [ ] 함수
+- [x] 고급 문법
+  - [x] 함수
   - [ ] 조건문과 반복문
   - [ ] 플레이스홀더와 확장
 - [ ] 참고 자료
@@ -315,11 +315,30 @@ $border-width: 2px;
 
 <br/>
 
-<br/>
 
 ### 함수
 
 <br/>
+
+- Scss에서는 @function을 사용해서, 함수를 생성할 수 있다.
+
+```scss
+@function double($value) {
+  @return $value * 2;
+}
+
+.container {
+  width: double(150px);
+}
+
+빌드 후
+
+.container {
+  width: 300px;
+}
+```
+
+- CSS에서 하나의 기능을 여러 컴포넌트에 적용을 시켜야 할 때, 함수를 사용하거나, 조건문을 같이 사용할 수 있다.
 
 <br/>
 
