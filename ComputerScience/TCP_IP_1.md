@@ -7,8 +7,10 @@
   - [x] 전송 계층
   - [x] 인터넷 계층
   - [x] 네트워크 인터페이스 계층
-- [ ] TCP/IP HTTP 요청 헤더
+- [x] TCP/IP 흐름
 - [ ] 참고 자료
+
+본 자료는 [냐옹아멍멍해봐](https://better-together.tistory.com/82?category=887984)님의 자료를 기반으로 **그림으로 쉽게 이해하는 웹/HTTP/네트워크**의 내용을 덧붙혀서 작성했습니다.
 
 ---
 
@@ -150,6 +152,9 @@
 ---
 
 <br/>
+
+![image](https://user-images.githubusercontent.com/56383948/261050845-a31ade0a-5953-4032-82d0-12476e66d9e6.png)
+
 
 <br/>
 
