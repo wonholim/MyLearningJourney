@@ -147,7 +147,7 @@
 
 <br/>
 
-## TCP/IP HTTP 요청 헤더
+## TCP/IP 흐름
 
 ---
 
@@ -164,5 +164,6 @@
 
 <br/>
 
+> [TCP/IP 흐름](https://docs.oracle.com/cd/E38901_01/html/E38894/ipov-29.html#ipov-100), [냐옹아멍멍해봐](https://better-together.tistory.com/89), [그림으로 쉽게 이해하는 네트워크](https://www.yes24.com/Product/Goods/118547742), [TCP헤더](https://evan-moon.github.io/2019/11/10/header-of-tcp/), [TCP/IP 특징](https://codedragon.tistory.com/4092)
 
 <br/>
