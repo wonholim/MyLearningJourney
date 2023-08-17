@@ -49,13 +49,49 @@
 <br/>
 
 - 브라우저에서 `naver.com`을 입력하면 발생하는 흐름을 살펴본다.
-- WireShark와 Chrome Dev Tool을 이용한다. 
+- WireShark와 Chrome Dev Tool을 이용한다.
+
+- 네이버의 주소
+  - 네이버는 DNS가 `naver.com`이다.
+
+<img width="971" alt="image" src="https://user-images.githubusercontent.com/56383948/261222280-ca5c7425-a775-4f41-b427-45044ed79544.png">
+
+<br/>
+
+- IP 주소는 `223.130.195.95`이고, Port는 `443`이다.
+  - 포트번호에서 `80`은 http를 의미하고, `443`은 https를 의미한다.
+  <img width="536" alt="image" src="https://user-images.githubusercontent.com/56383948/261222666-e26e7b9d-5bc8-494e-a958-9bbd59fa6842.png">
+
+<br/>
+
+- 어째서, http요청 80이 아닌, https 443으로 지정이 되었을까?
+- 사실 브라우저는 HSTS리스트를 순회하며, 도메인이 리스트에 포함되어있는지 확인한다.
+- 만약 HSTS에 포함이 된다면, https 443요청을 시도하며, 없는 경우 http 80요청을 한다.
+- 크롬 개발자 도구에서 네트워크 응답 헤더에 보면 HSTS를 직접 볼 수 있다.
+  <img width="738" alt="image" src="https://user-images.githubusercontent.com/56383948/261224074-6834dd58-3972-4557-ac27-e1d9ef77c12c.png">
+
+- 이외에도 `chrome://net-internals/#hsts`, [HTST리스트JSON](https://source.chromium.org/chromium/chromium/src/+/main:net/http/transport_security_state_static.json)을 통해 더 자세하게 알아볼 수 있다.
+
+<br/>
+
+- `naver.com`을 쳤을 때, 시작점 주소가 `pm.pstatic.net`으로 다르다는 것을 볼 수 있다.
+  <img width="771" alt="image" src="https://user-images.githubusercontent.com/56383948/261225864-8eec1e4d-a18b-4ba9-ac6c-edcc09608869.png">
+
+<br/>
+
+- 실제로 `pm.pstatic.net`을 브라우저에 입력하고 엔터를 누른다면, 같은 네이버 화면이 뜨는 것을 알 수 있다.
+- `pm.pstatic.net`에서 시작해서, 다른 곧에 요청을 보내는 것을 알 수 있다.
+  <img width="771" alt="image" src="https://user-images.githubusercontent.com/56383948/261227937-624af1d0-9b4a-40ac-8c4f-5a3377855763.png">
+
+- NEXT?
 
 <br/>
 
 ### 응용 계층
 
 <br/>
+
+
 
 <br/>
 
