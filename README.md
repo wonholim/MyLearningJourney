@@ -26,6 +26,7 @@
 - [ComputerScience](https://github.com/wonholim/MyLearningJourney/tree/main/ComputerScience)
   - [Complier](https://github.com/wonholim/MyLearningJourney/blob/main/ComputerScience/Compiler.md)
   - [TCP/IP_1](https://github.com/wonholim/MyLearningJourney/blob/main/ComputerScience/TCP_IP_1.md)
+  - [TCP/IP_2](https://github.com/wonholim/MyLearningJourney/blob/main/ComputerScience/TCP_IP_2.md)
 
 </br></br>
 
