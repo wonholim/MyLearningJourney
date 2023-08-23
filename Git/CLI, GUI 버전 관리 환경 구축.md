@@ -45,7 +45,8 @@
 
 <br/>
 
-4. github로 돌아가서, repo를 선택해서, HTTPS clone을 한다.
+4. github로 돌아가서, repo를 선택해서, HTTPS clone을 한다.  
+
 ![image](https://user-images.githubusercontent.com/56383948/262591972-d5cb50f6-90a5-4da5-a473-886e9fd53bd5.png)
 
 
@@ -55,7 +56,8 @@
 
 <br/>
 
-6. SSH Key를 이용하려면, GitHub 개인 계정에서 새로운 SSH Key를 생성해야한다. (만약 기존에 키를 가지고 있는지 모르겠다면, `ls -al ~/.ssh` 명령을 입력해서 .pub로 끝나는 것이 있는지 확인한다.) 
+6. SSH Key를 이용하려면, GitHub 개인 계정에서 새로운 SSH Key를 생성해야한다. (만약 기존에 키를 가지고 있는지 모르겠다면, `ls -al ~/.ssh` 명령을 입력해서 .pub로 끝나는 것이 있는지 확인한다.)  
+
 ![image](https://user-images.githubusercontent.com/56383948/262593693-893cf13c-f1af-4523-8468-e6ff962721fc.png)
 
 <br/>
@@ -75,7 +77,8 @@
 
 <br/>
 
-10. 생성이 잘 되었는지 확인한다.
+10. 생성이 잘 되었는지 확인한다.  
+
 ![image](https://user-images.githubusercontent.com/56383948/262597409-574c8e10-c7f6-413d-87b0-20ade1da9466.png)
 
 <br/><br/>
@@ -120,7 +123,8 @@
 <br/>
 
 
-7. 어떤 방식으로 로그인을 할지 선택한다.
+7. 어떤 방식으로 로그인을 할지 선택한다.  
+
 ![image](https://user-images.githubusercontent.com/56383948/262602499-dd168063-fc75-4ceb-a145-672e194bcb25.png)
 
 <br/>
@@ -177,7 +181,8 @@
 
 <br/>
 
-6. sourcetree를 이용해서, 원격 저장소의 clone이 잘 되는지 확인한다.
+6. sourcetree를 이용해서, 원격 저장소의 clone이 잘 되는지 확인한다.  
+
 ![image](https://user-images.githubusercontent.com/56383948/262612447-441d4c69-006d-41e3-a1c2-97a6e3027529.png)
 ![image](https://user-images.githubusercontent.com/56383948/262612718-735c23d4-ee66-491b-8814-866794c14b89.png)
 
@@ -194,7 +199,8 @@
 
 <br/>
 
-2. 파일을 설치한 뒤, Sigh in을 클릭한다.
+2. 파일을 설치한 뒤, Sigh in을 클릭한다.  
+
 ![image](https://user-images.githubusercontent.com/56383948/262616282-3174a984-afa0-4bcd-8f9d-416240e8907d.png)
 ![image](https://user-images.githubusercontent.com/56383948/262616398-4e66940f-545c-48a2-aef8-26ea010e2619.png)
 <br/>
