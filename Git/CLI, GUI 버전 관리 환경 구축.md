@@ -2,7 +2,7 @@
 
 - [ ] CLI 버전 관리 환경 구축
   - [x] git 구축
-  - [ ] gh 구축
+  - [x] gh 구축
 - [ ] GUI 버전 관리 환경 구축
   - [ ] sourcetree 구축
   - [ ] gitkraken 구축
@@ -83,6 +83,56 @@
 ### gh 구축
 
 <br/>
+
+`gh는 GitHub CLI를 말하며, 터미널 환경 또는 명령 프롬프트에서 사용이 가능하게 해주는 GitHub 공식 도구이다. GitHub 웹페이지에서 하던 이슈, PR, 저장소 생성 등 기타 GitHub관련 작업을 수행할 수 있다.`
+
+1. [gh](https://cli.github.com/)에 들어가서 자신에게 맞게 설치한다.
+![image](https://user-images.githubusercontent.com/56383948/262599554-bff2ea3a-09dd-41c3-b161-9bbe4735b8b1.png)
+![image](https://user-images.githubusercontent.com/56383948/262600250-b92a0d50-64f6-4cb9-b341-0be32efec361.png)
+
+<br/>
+
+2. `gh version` 명령어를 입력해서, 설치가 잘 되었는지 확인한다.
+![image](https://user-images.githubusercontent.com/56383948/262600532-dfd2c0ef-e12e-486f-bca8-f7531feeef86.png)
+
+<br/>
+
+3. GitHub 계정으로 인증을 해야한다. `gh auth login` 명령어를 입력한다. (화살표로 위아래 움직일 수 있으며, GitHub.com의 계정으로 인증할 것이기 때문에, 엔터를 누른다.)
+![image](https://user-images.githubusercontent.com/56383948/262601186-d9fd4d1a-e040-477c-a373-6fe7d1768856.png)
+
+<br/>
+
+4. HTTPS, SSH 둘 중 어떤 프로토콜을 선호하는지 정하고, 엔터를 누른다.
+![image](https://user-images.githubusercontent.com/56383948/262601581-96ccaefd-97a8-4301-bc93-e2c58925fb5a.png)
+
+<br/>
+
+5. SSH를 누르게된다면, ssh key를 만들 때 사용한 .pub 파일을 선택한다.
+![image](https://user-images.githubusercontent.com/56383948/262601922-4bb92592-85ce-4814-b316-d53323b78a86.png)
+
+<br/>
+
+6. ssh Key를 만들 때 사용한 ssh key title을 입력한다.
+![image](https://user-images.githubusercontent.com/56383948/262602422-48100d28-d8d5-40cf-b71e-532f1b7b9aac.png)
+
+<br/>
+
+
+7. 어떤 방식으로 로그인을 할지 선택한다.
+![image](https://user-images.githubusercontent.com/56383948/262602499-dd168063-fc75-4ceb-a145-672e194bcb25.png)
+
+<br/>
+
+8. 웹 브라우저로 인증을 한다고 하고, 엔터를 입력하면 인증 브라우저가 뜨는데, 인증 코드를 입력한다.
+![image](https://user-images.githubusercontent.com/56383948/262603459-cafa2282-066b-4e80-886f-62df6c679c23.png)
+![image](https://user-images.githubusercontent.com/56383948/262603680-742d3901-e6af-4f6d-bd82-40e5c390b56e.png)
+![image](https://user-images.githubusercontent.com/56383948/262603755-6bcd7b55-17ef-42fb-98f5-23939f3233ac.png)
+![image](https://user-images.githubusercontent.com/56383948/262603834-f6c6b78f-e34e-4f2c-92fe-a6d7e5180526.png)
+
+<br/>
+
+9. 인증이 완료되었다면, `gh repo clone { }` 명령을 이용해서, 잘되는지 확인해본다.
+![image](https://user-images.githubusercontent.com/56383948/262604269-ea850a12-b1c3-423a-b490-df24d73c7564.png)
 
 <br/>
 
