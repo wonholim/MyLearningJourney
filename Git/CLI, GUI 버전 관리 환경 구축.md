@@ -3,7 +3,7 @@
 - [x] CLI 버전 관리 환경 구축
   - [x] git 구축
   - [x] gh 구축
-- [ ] GUI 버전 관리 환경 구축
+- [x] GUI 버전 관리 환경 구축
   - [x] sourcetree 구축
   - [x] gitkraken 구축
 ---
