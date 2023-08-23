@@ -4,7 +4,7 @@
   - [x] git 구축
   - [x] gh 구축
 - [ ] GUI 버전 관리 환경 구축
-  - [ ] sourcetree 구축
+  - [x] sourcetree 구축
   - [ ] gitkraken 구축
 ---
 
@@ -78,13 +78,15 @@
 10. 생성이 잘 되었는지 확인한다.
 ![image](https://user-images.githubusercontent.com/56383948/262597409-574c8e10-c7f6-413d-87b0-20ade1da9466.png)
 
-<br/>
+<br/><br/>
 
 ### gh 구축
 
 <br/>
 
 `gh는 GitHub CLI를 말하며, 터미널 환경 또는 명령 프롬프트에서 사용이 가능하게 해주는 GitHub 공식 도구이다. GitHub 웹페이지에서 하던 이슈, PR, 저장소 생성 등 기타 GitHub관련 작업을 수행할 수 있다.`
+
+<br/>
 
 1. [gh](https://cli.github.com/)에 들어가서 자신에게 맞게 설치한다.
 ![image](https://user-images.githubusercontent.com/56383948/262599554-bff2ea3a-09dd-41c3-b161-9bbe4735b8b1.png)
@@ -134,7 +136,7 @@
 9. 인증이 완료되었다면, `gh repo clone { }` 명령을 이용해서, 잘되는지 확인해본다.
 ![image](https://user-images.githubusercontent.com/56383948/262604269-ea850a12-b1c3-423a-b490-df24d73c7564.png)
 
-<br/>
+<br/><br/>
 
 ## GUI 버전 관리 환경 구축
 
@@ -146,7 +148,40 @@
 
 <br/>
 
+`sourcetree는 git을 명령 줄 대신 GUI를 제공해서, 저장소의 버전 관리 작업을 더 쉽게 만들어준다.`
+
 <br/>
+
+1. [sourcetree](https://www.sourcetreeapp.com/)에 들어가서, 자신에게 맞는 버전을 다운받는다.
+![image](https://user-images.githubusercontent.com/56383948/262606655-7693171f-8a1b-4c52-89a9-9d0dd7a7ec91.png)
+
+<br/>
+
+2. 설치 후 실행을 하고, bitbucket은 사용하지 않으므로 넘어간다. config 기본 설정은 미리 해두면 편하다.
+![image](https://user-images.githubusercontent.com/56383948/262611111-c5542831-62f8-4e0d-9342-8fe01d6c4c61.png)
+
+<br/>
+
+3. 이후, 계정을 눌러서 호스트를 Github으로, 인증 방식을 OAuth를 선택한다.
+![image](https://user-images.githubusercontent.com/56383948/262611355-7d9b57a9-2757-435a-91d7-7777614159f2.png)
+
+<br/>
+
+4. 계정 연결로 Github과 sourcetree를 이어준뒤, HTTPS 프로토콜을 이용해 간단하게 구축한다.
+![image](https://user-images.githubusercontent.com/56383948/262612079-f347861a-62c2-407f-ab2f-37fad0b797c1.png)
+
+<br/>
+
+5. 계정을 클릭하고 디폴트 설정을 해주면, 계정에 있는 repo가 원격에 뜨게 된다.
+![image](https://user-images.githubusercontent.com/56383948/262612260-502ac3bf-8762-4561-a89d-da1103008131.png)
+
+<br/>
+
+6. sourcetree를 이용해서, 원격 저장소의 clone이 잘 되는지 확인한다.
+![image](https://user-images.githubusercontent.com/56383948/262612447-441d4c69-006d-41e3-a1c2-97a6e3027529.png)
+![image](https://user-images.githubusercontent.com/56383948/262612718-735c23d4-ee66-491b-8814-866794c14b89.png)
+
+<br/><br/>
 
 ### gitkraken 구축
 
