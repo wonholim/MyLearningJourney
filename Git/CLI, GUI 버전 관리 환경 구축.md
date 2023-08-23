@@ -5,7 +5,7 @@
   - [x] gh 구축
 - [ ] GUI 버전 관리 환경 구축
   - [x] sourcetree 구축
-  - [ ] gitkraken 구축
+  - [x] gitkraken 구축
 ---
 
 <br/>
@@ -187,4 +187,31 @@
 
 <br/>
 
+`gitkraken은 초보자부터 전문가까지 Git 작업을 더 편리하게 만들기 위해, 탄생한 도구이다. GUI기반으로 sourcetree보다 빠르다. 하지만 Mercurial은 지원하지않는다.`
+
+1. [gitkraken](https://www.gitkraken.com/)에 접속해서, 자신에게 맞는 버전을 다운로드 받는다.
+![image](https://user-images.githubusercontent.com/56383948/262616061-10a1ec48-da57-4ff7-a23a-e493b3c24097.png)
+
 <br/>
+
+2. 파일을 설치한 뒤, Sigh in을 클릭한다.
+![image](https://user-images.githubusercontent.com/56383948/262616282-3174a984-afa0-4bcd-8f9d-416240e8907d.png)
+![image](https://user-images.githubusercontent.com/56383948/262616398-4e66940f-545c-48a2-aef8-26ea010e2619.png)
+<br/>
+
+3. GitHub을 클릭하고, GitHub과 Kraken에게 권한을 부여해준다.
+![image](https://user-images.githubusercontent.com/56383948/262616460-4f665088-87f6-4c60-9480-822e379d0c16.png)
+![image](https://user-images.githubusercontent.com/56383948/262616633-bd4f4ed4-3b93-4b3f-942c-4e5f832f0c0f.png)
+<br/>
+
+4. GitHub에서, 원격 저장소를 선택해서 클론하거나, URL을 통해 클론할 수 있다.
+![image](https://user-images.githubusercontent.com/56383948/262616852-1b6caacb-2e09-43a8-a732-1d7e7916bd26.png)
+![image](https://user-images.githubusercontent.com/56383948/262617046-d92d0374-d175-43f6-83ad-99ded5c68bc4.png)
+<br/>
+
+5. 이미 Clone한 프로젝트가 있다면, 열어서 관리할 수 있다.
+![image](https://user-images.githubusercontent.com/56383948/262617253-d27e6dc3-b2db-4a30-9709-dc64045975cb.png)
+
+
+
+<br/><br/>
