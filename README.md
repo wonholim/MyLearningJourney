@@ -8,8 +8,15 @@
 
 ---
 
+- [Git](https://github.com/wonholim/MyLearningJourney/tree/main/Git)
+  - [CLI, GUI 버전 관리 환경 구축](https://github.com/wonholim/MyLearningJourney/blob/main/Git/CLI%2C%20GUI%20%EB%B2%84%EC%A0%84%20%EA%B4%80%EB%A6%AC%20%ED%99%98%EA%B2%BD%20%EA%B5%AC%EC%B6%95.md)
+
+<br/><br/>
+
 - [Jenkins](https://github.com/wonholim/MyLearningJourney/tree/main/Jenkins)
   - [Docker Jenkins 설치](https://github.com/wonholim/MyLearningJourney/blob/main/Jenkins/Jenkins%EC%84%A4%EC%B9%98.md)
+
+<br/><br/>
 
 - [Sass](https://github.com/wonholim/MyLearningJourney/tree/main/Sass)
   - [Sass소개 및 문법](https://github.com/wonholim/MyLearningJourney/blob/main/Sass/Sass.md)
